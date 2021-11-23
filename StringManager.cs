@@ -6,7 +6,7 @@ namespace Neal_StringYouAlong
     class StringManager
     {
         private string _currentString;
-        private Dictionary<int, string> _valuePairs = new();
+        private readonly Dictionary<int, string> _valuePairs = new();
 
         public StringManager()
         {
@@ -20,7 +20,6 @@ namespace Neal_StringYouAlong
         private Dictionary<int, string> ValuePairs
         {
             get { return _valuePairs; }
-            set { _valuePairs = value; }
         }
         public string Reverse(string s)
         {
@@ -45,6 +44,7 @@ namespace Neal_StringYouAlong
                 return Reverse(s);
             }
 
+            CurrentString = s;
             Stack<char> charStack = new();
             string temp = null;
             bool[] casing = new bool[CurrentString.Length];
@@ -75,37 +75,34 @@ namespace Neal_StringYouAlong
         }
         public bool Symmetric(string s)
         {
+            CurrentString = s;
             if (s == Reverse(s))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         public override string ToString()
         {
-            Queue<int> ASCII = new();
+            int ASCII = 0;
             for (int i = 0; i < CurrentString.Length; i++)
             {
                 if ((int)CurrentString[i] == 32 ||
                     ((int)CurrentString[i] > 64 && (int)CurrentString[i] < 91) ||
                     ((int)CurrentString[i] > 96 && (int)CurrentString[i] < 123))
-                    ASCII.Enqueue((int)CurrentString[i]);
+                    ASCII += (int)CurrentString[i];
             }
-            if (ASCII.Count < 1)
+            if (ASCII < 32)
             {
                 return ValuePairs[-1];
             }
             else
             {
-                string output = null;
-                int qLength = ASCII.Count;
-                int sumOfASCII = 0;
-
-                for (int i = 0; i < qLength; i++)
-                {
-                    sumOfASCII += ASCII.Dequeue();
-                }
-
-                int[] sumArray = GetDigits(sumOfASCII);
+                string output = string.Empty;
+                int[] sumArray = GetDigits(ASCII);
 
                 for (int i = 0; i < sumArray.Length; i++)
                 {
@@ -120,7 +117,6 @@ namespace Neal_StringYouAlong
                 }
                 return output;
             }
-
         }
         public override bool Equals(object obj)
         {
@@ -140,13 +136,10 @@ namespace Neal_StringYouAlong
             ValuePairs.Add(8, "Eight");
             ValuePairs.Add(9, "Nine");
         }
-
         private static int[] GetDigits(int number)
         {
             int length = (int)Math.Ceiling(Math.Log10(number));
-
             int[] intArray = new int[length];
-
             int power = (int)Math.Pow(10, length - 1);
 
             for (int i = length - 1; i >= 0; --i)
@@ -155,7 +148,6 @@ namespace Neal_StringYouAlong
                 number -= intArray[length - i - 1] * power;
                 power /= 10;
             }
-
             return intArray;
         }
     }
