@@ -101,18 +101,19 @@ namespace Neal_StringYouAlong
             }
             else
             {
+                string sumOfASCII = ASCII.ToString();
                 string output = string.Empty;
-                int[] sumArray = GetDigits(ASCII);
+                //int[] sumArray = GetDigits(ASCII);
 
-                for (int i = 0; i < sumArray.Length; i++)
+                for (int i = 0; i < sumOfASCII.Length; i++)
                 {
                     if (i == 0)
                     {
-                        output = ValuePairs[sumArray[i]];
+                        output = ValuePairs[sumOfASCII[i]];
                     }
                     else
                     {
-                        output += " " + ValuePairs[sumArray[i]];
+                        output += " " + ValuePairs[sumOfASCII[i]];
                     }
                 }
                 return output;
@@ -125,30 +126,30 @@ namespace Neal_StringYouAlong
         private void SetValuePairs()
         {
             ValuePairs.Add(-1, "Negative One");
-            ValuePairs.Add(0, "Zero");
-            ValuePairs.Add(1, "One");
-            ValuePairs.Add(2, "Two");
-            ValuePairs.Add(3, "Three");
-            ValuePairs.Add(4, "Four");
-            ValuePairs.Add(5, "Five");
-            ValuePairs.Add(6, "Six");
-            ValuePairs.Add(7, "Seven");
-            ValuePairs.Add(8, "Eight");
-            ValuePairs.Add(9, "Nine");
+            ValuePairs.Add(48, "Zero");
+            ValuePairs.Add(49, "One");
+            ValuePairs.Add(50, "Two");
+            ValuePairs.Add(51, "Three");
+            ValuePairs.Add(52, "Four");
+            ValuePairs.Add(53, "Five");
+            ValuePairs.Add(54, "Six");
+            ValuePairs.Add(55, "Seven");
+            ValuePairs.Add(56, "Eight");
+            ValuePairs.Add(57, "Nine");
         }
-        private static int[] GetDigits(int number)
-        {
-            int length = (int)Math.Ceiling(Math.Log10(number));
-            int[] intArray = new int[length];
-            int power = (int)Math.Pow(10, length - 1);
+        //private static int[] GetDigits(int number)
+        //{
+        //    int length = (int)Math.Ceiling(Math.Log10(number));
+        //    int[] intArray = new int[length];
+        //    int power = (int)Math.Pow(10, length - 1);
 
-            for (int i = length - 1; i >= 0; --i)
-            {
-                intArray[length - i - 1] = number / power;
-                number -= intArray[length - i - 1] * power;
-                power /= 10;
-            }
-            return intArray;
-        }
+        //    for (int i = length - 1; i >= 0; --i)
+        //    {
+        //        intArray[length - i - 1] = number / power;
+        //        number -= intArray[length - i - 1] * power;
+        //        power /= 10;
+        //    }
+        //    return intArray;
+        //}
     }
 }

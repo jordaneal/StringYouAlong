@@ -6,6 +6,8 @@
 //        Was ubale to take the ASCII sum value and use .ToString()
 //        and then convert to an Int[], so I got creative... I'm sure
 //        there was an easier way.
+//        UPDATE: IDK why ToString() wasn't working, but it does now.
+//                Leaving in my hard worked code in comments...
 // BEHAVIORS NOT IMPLIMENTED AND WHY: 
 
 namespace Neal_StringYouAlong
